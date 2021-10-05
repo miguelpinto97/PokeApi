@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>RUTAS A CONSULTAR</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body data-ma-theme="blue">
+	<section class="content">
+
+
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Lista de Pokémon</h4>
+
+				<nav aria-label="Page navigation example">
+					<ul class="pagination row mx-auto justify-content-center">
+
+						<li th:class="${item.classPaginacion}" th:each="item : ${listaPaginacion}">
+							<a 
+							class="page-link"
+							th:text=${item.textoPagina}
+							th:href="@{/cambiarPagina(pagina=${item.numeroPagina},cantidad=${cantidad})}"></a>
+						</li>
+
+					</ul>
+				</nav>
+
+				<div  class="row justify-content-center"
+					style="margin-left: 1.5px; margin-right: 1.5px;">
+
+					<div class="clase col-md-2 col-sm-9 m-3 text-center card"
+						style="min-width: 25%; display: block;"
+						th:each="Pokemon : ${PaginaPokemon.listaPokemon}">
+
+						<img class="card-img-top mt-2" th:src=${Pokemon.rutaImagen}
+							alt="Card image cap">
+
+						<div class="card-body">
+
+							<h5 class="card-title" style="font-weight: bold"
+								th:text=${Pokemon.nombre}></h5>
+
+							<a th:href="@{/obtenerDetallePokemon(id=${Pokemon.id})}" class="link-primary">Consultar Pokedex</a>
+
+
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+				<nav aria-label="Page navigation example">
+					<ul class="pagination row mx-auto justify-content-center">
+
+						<li th:class="${item.classPaginacion}" th:each="item : ${listaPaginacion}">
+							<a 
+							class="page-link"
+							th:text=${item.textoPagina}
+							th:href="@{/cambiarPagina(pagina=${item.numeroPagina},cantidad=${cantidad})}"></a>
+						</li>
+
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</section>
+	<!--  <form th:action="@{/actualizar}">
+
+
+											<button type="submit" th:name="id" th:value=${Bus.codbus}
+												class="btn btn--icon login_block_btn">Seleccione</button>
+
+										</form>
+-->
+
+	<script type="text/javascript">
+		var pagina = 0;
+		var cantidad = 20;
+
+		function cambiarPagina() {
+			window.location.href = "/cambiarPagina?pagina=0&cantidad=20";
+		}
+	</script>
+
+</body>
+</html>

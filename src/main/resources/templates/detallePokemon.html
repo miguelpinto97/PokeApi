@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body data-ma-theme="blue">
+
+
+
+	<div class="clase col-md-11 col-sm-11 m-3 text-center card"
+		style="min-width: 25%; display: block;">
+		<a th:href="@{/}" class="link-primary">Regresar a la Pagina Principal</a>
+
+		<div class="row">
+			<div class="col-4">
+				<img class="card-img-top mt-2 w-100" th:src=${Pokemon.rutaImagen}
+					alt="Card image cap">
+				<h5 class="card-title" style="font-weight: bold"
+					th:text=${Pokemon.nombre}></h5>
+
+				<span class="badge bg-warning text-dark" style="margin: 0 2px 0 2px"
+					th:each="Tipo : ${Pokemon.listaTipos}" th:text="${Tipo}"></span> <br>
+
+			</div>
+
+
+			<div class="card-body col-7">
+
+
+
+				<p class="card-text" style="margin-bottom: 0.2rem !important">Movimientos
+					que puede aprender</p>
+
+				<span class="badge bg-success" style="margin: 0 2px 0 2px"
+					th:each="Movimiento : ${Pokemon.listaMovimientos}"
+					th:text="${Movimiento}"></span>
+
+
+
+			</div>
+		</div>
+		<p class="card-text" style="margin-bottom: 0.2rem !important">Cadena
+			Evolutiva</p>
+		<div class="row justify-content-center" id="CadenaEvolutiva"
+			style="margin-left: 1.5px; margin-right: 1.5px;">
+
+			<div class="clase col-md-2 col-sm-9 m-3 text-center card"
+				style="min-width: 25%; display: block;"
+				th:each="poke : ${listaCadenaEvolutiva}">
+
+				<img class="card-img-top mt-2" th:src=${poke.rutaImagen}
+					alt="Card image cap">
+
+				<div class="card-body">
+
+					<h5 class="card-title" style="font-weight: bold"
+						th:text=${poke.nombre}></h5>
+
+					<a th:href="@{/obtenerDetallePokemon(id=${poke.id})}"
+						class="link-primary">Consultar Pokedex</a>
+
+
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+	</div>
+</body>
+</html>
+
+
+
+
+
